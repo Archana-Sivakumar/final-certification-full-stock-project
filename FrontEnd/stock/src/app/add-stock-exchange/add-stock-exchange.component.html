@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg bg-info navbar-light justify-content-right">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+    
+                <a class="navbar-brand" href="#" id="movie-style">
+                    <h2> MONEYMART </h2>
+                </a>
+            </li>
+        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                   <li> <button class="btn btn-info btn-lg dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle" aria-hidden="true"></i> {{userName}}</button></li>
+                   <li>&nbsp;&nbsp;</li>
+                   <li><button type="button" class="btn btn-info btn-lg" (click)="back()"><i class="fa fa-sign-in"
+                    aria-hidden="true"></i>BACK</button></li>
+                    <li><button type="button" class="btn btn-info btn-lg" (click)="logout()"><i class="fa fa-sign-in"
+                            aria-hidden="true"></i> LOGOUT</button></li>
+            </ul>
+        </div>
+</nav>
+    
+    
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-body">
+                <h2 class="card-title mb-4 mb-3">ADD STOCK EXCHANGE</h2>
+    
+                <form [formGroup]="stockExchange">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                            <label for="stockExchangeName">StockExchangeName : </label>
+                            <input type="text" id="stockExchangeName" name="stockExchangeName" class="form-control mb-2" placeholder="Enter stockExchangeName"
+                                formControlName="stockExchangeName">
+                            <div class="errorMessage"
+                                *ngIf="!stockExchange.get('stockExchangeName').valid && stockExchange.get('stockExchangeName').hasError('minlength')">
+                                <h6><i class="material-icons " href="#">error</i> StockExchangeName is Required</h6>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                            <label for="brief">Brief :</label>
+                            <input type="text" id="brief" name="brief" class="form-control mb-2"
+                                placeholder="Enter brief" formControlName="brief">
+                            <div class="errorMessage"
+                                *ngIf="!stockExchange.get('brief').valid && stockExchange.get('brief').touched">
+                                <h6><i class="material-icons " href="#">error</i> Brief is required</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                            <label for="address">Address :</label>
+                            <input type="text" id="address" name="address" class="form-control mb-2" placeholder="Enter address"
+                                formControlName="address">
+                            <div class="errorMessage"
+                                *ngIf="!stockExchange.get('address').valid && stockExchange.get('address').touched">
+                                <h6><i class="material-icons " href="#">error</i> Address is required</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                            <label for="remarks">Remarks :</label>
+                            <input type="text" id="remarks" name="remarks" class="form-control mb-2"
+                                placeholder="Enter remarks" formControlName="remarks">
+                            <div class="errorMessage"
+                                *ngIf="!stockExchange.get('remarks').valid && stockExchange.get('remarks').touched">
+                                <h6><i class="material-icons " href="#">error</i> Remarks is required</h6>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <button type="button" (click)="addStockExchangeForm(stockExchange)" [disabled]="stockExchange.invalid" class="btn btn-success ">SAVE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    

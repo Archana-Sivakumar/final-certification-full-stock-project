@@ -1,0 +1,12 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="text-dark" >Find Company</h1>
+              <div class="input-group">
+                   <div class="input-group-prepend">
+                      <span class="input-group-text" class="text-dark"><i class="material-icons">search</i></span>
+                  </div>
+                <input class="form-control form-control-lg" type="text" [(ngModel)]="searchString" placeholder="Search Companies" (keyup)="filterData()">
+            </div>
+      </div>   
+</div>
+

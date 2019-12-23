@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg bg-info navbar-light justify-content-right">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+      
+                <a class="navbar-brand" href="#" id="movie-style">
+                    <h2 id="navbar-logo"> <img  id="image-head" src="https://cdn3.iconfinder.com/data/icons/investor-investing/278/investor-investment-investing-invest-009-512.png">
+                        MONEYMART</h2>
+                </a>
+            </li>
+        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li> <button type="button" class="btn btn-info btn-lg" (click)="back()"><i class="fa fa-backward"aria-hidden="true"></i> BACK</button></li>
+                <li> &nbsp;&nbsp;</li>
+                <li><button type="button" class="btn btn-info btn-lg" (click)="logout()"><i class="fa fa-sign-in"aria-hidden="true"></i> LOGOUT</button></li>
+                
+            </ul>
+        </div>
+      
+</nav>
+    
+    
+    <div class="container">
+        <h1>Edit Profile</h1>
+          
+        <div class="row">
+          <div class="col-md-3">
+            <div class="text-center">
+              <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+              <h6>Upload a different photo...</h6>
+            </div>
+          </div>
+          
+          <div class="col-md-9 personal-info">
+            <div class="alert alert-info alert-dismissable">
+              <a class="panel-close close" data-dismiss="alert">×</a> 
+              <i class="fa fa-coffee"></i>
+              YOUR <strong>MAIL ID</strong> AND <strong>USER NAME</strong> CANNOT BE CHANGED !
+            </div>
+            <h3>Personal info</h3>
+            
+            <form [formGroup]="editProfileForm" class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="userName" class="col-lg-3 control-label">USER NAME :</label>
+                <div class="col-lg-8">
+                  <input 
+                    class="form-control" 
+                    type="text" 
+                    id="userName"
+                    name="userName"
+                    formControlName="userName"
+                    disabled="disabled">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mail" class="col-lg-3 control-label">EMAIL ID :</label>
+                <div class="col-lg-8">
+                  <input 
+                    class="form-control" 
+                    mail="text" 
+                    id="email"
+                    name="email"
+                    formControlName="email"
+                    disabled="disabled">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mobileNumber" class="col-lg-3 control-label">MOBILE NUMBER :</label>
+                <div class="col-lg-8">
+                  <input 
+                    class="form-control" 
+                    type="text" 
+                    id="mobileNumber"
+                    name="mobileNumber"
+                    formControlName="mobileNumber">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-8">
+                  <input type="button" class="btn btn-primary" (click)="edit(editProfileForm)" value="Save Changes">
+                  <span></span>
+                  <input type="reset" class="btn btn-default" (click)="cancel()" value="Cancel">
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>

@@ -1,0 +1,132 @@
+<nav class="navbar navbar-expand-lg bg-info navbar-light justify-content-right">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+    
+                    <a class="navbar-brand" href="#" id="movie-style">
+                            <h2 id="navbar-logo"> <img  id="image-head" src="https://cdn3.iconfinder.com/data/icons/investor-investing/278/investor-investment-investing-invest-009-512.png">
+                                MONEYMART</h2>
+                    </a>
+            </li>
+        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                   <li> <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle" aria-hidden="true"></i> {{userName}}</button></li>
+                    <li>&nbsp;&nbsp;</li>
+
+                    <li> <button class="btn btn-info btn-lg" type="button" (click)="company()">Manage Company</button></li>
+                    <li>&nbsp;&nbsp;</li>
+
+                    <li> <button class="btn btn-info btn-lg" type="button" (click)="stockExchange()">Stock Exchange</button></li>
+                    <li>&nbsp;&nbsp;</li>
+
+                    <li><button type="button" class="btn btn-info btn-lg" (click)="import()"><i class="fa fa-sign-in"
+                    aria-hidden="true"></i>IMPORT FILE</button></li>
+                    <li>&nbsp;&nbsp;</li>
+
+                    <li><button type="button" class="btn btn-info btn-lg" (click)="logout()"><i class="fa fa-sign-in"
+                            aria-hidden="true"></i> LOGOUT</button></li>
+            </ul>
+        </div>
+</nav>
+
+<div *ngIf="addStockExchangeStatus">
+        <div class="container text-center">
+              <div class="jumbotron p-2 bd-highlight mx-3">
+                  <h5><i class="material-icons " href="#">add_alert</i> StockExchange Details Added Successfully.</h5>
+              </div>
+        </div>
+</div>
+
+<div *ngIf="importStatus">
+  <div class="container text-center" id="import-file">
+      <h1 class="mb-5">IMPORT FILE TO UPLOAD </h1>
+          <input 
+              type="file" 
+              (change)="uploadFile($event)"
+          >
+  </div>
+</div>  
+
+<div *ngIf="companyStatus==true">
+
+    <div class="container">
+      
+        <h1 style="text-align:center;color:black;">
+            COMPANY DETAILS
+        </h1>
+      
+        <table class="table table-striped table-dark ">
+            <thead class="thead-dark">
+              <tr>
+                <th>COMPANY CODE</th>
+                <th>COMPANY NAME</th>
+                <th>CEO</th>
+                <th>BOARD OF DIRECTOR</th>
+                <th>BRIEF</th>
+                <th>SECTOR</th>
+                <th>STOCK EXCHANGE</th>
+                <th>TURNOVER</th>
+              </tr>
+            </thead>
+            <tbody class="thead-light">
+      
+              <tr *ngFor="let list of companyList ">
+                <td>{{list.companyCode}}</td>
+                <td>{{list.companyName}}</td>
+                <td>{{list.ceo}}</td>
+                <td>{{list.boardOfDirectors}}</td>
+                <td>{{list.brief}}</td>
+                <td>{{list.sector.sectorName}}</td>
+                <td>
+                <div *ngFor="let exchange of list.stockExchange">
+                    {{exchange.stockExchangeName}}
+                </div></td>
+                <td>{{list.turnOver}}</td>
+              </tr>
+      
+            </tbody>
+        </table>
+    
+    </div>
+      
+</div>
+
+<div *ngIf="stockExchangeStatus==true">
+    
+    <div class="container">
+          
+        <h1 style="text-align:center;color:black;">
+            STOCK EXCHANGE DETAILS
+        </h1>
+          
+        <table class="table table-striped table-dark ">
+            <thead class="thead-dark">
+              <tr>
+                <th>STOCKEXCHANGE NAME</th>
+                <th>BRIEF</th>
+                <th>ADDRESS</th>
+                <th>REMARKS</th>
+              </tr>
+              </thead>
+              <tbody class="thead-light">
+          
+                <tr *ngFor="let list of stockExchangeList ">
+                    <td>{{list.stockExchangeName}}</td>
+                    <td>{{list.brief}}</td>
+                    <td>{{list.address}}</td>
+                    <td>{{list.remarks}}</td>
+                </tr>
+          
+              </tbody>
+        </table>
+          
+        <h1 style="text-align:center;color:green;">
+            <button type="button" class="btn btn-success" (click)="addStockExchange()">ADD STOCK EXCHANGE</button>
+        </h1>
+    </div>
+          
+</div>

@@ -1,0 +1,72 @@
+version: '3'
+services:
+  stock-mysql:
+    image: mysql:8.0.18
+    ports:
+      - "33061:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass@word1
+    volumes:
+      - C:/Users/Admin/Desktop/MoDProject:/var/lib/mysql
+      - ./dbscripts:/docker-entrypoint-initdb.d
+  eureka-discovery-service:
+    image: eureka-discovery-app
+    build: eureka-discovery-service/.
+    ports:
+      - 8761:8761
+  authentication:
+    image: authentication-app
+    build: authentication/.
+    ports:
+      - 8089:8089
+    depends_on:
+      - stock-mysql
+      - eureka-discovery-service
+    links:
+      - stock-mysql  
+      - eureka-discovery-service
+  file-upload:
+    image: file-upload-app
+    build: file-upload/.
+    ports:
+      - 8070:8070
+    depends_on:
+      - stock-mysql
+      - eureka-discovery-service
+    links:
+      - stock-mysql
+      - eureka-discovery-service
+      
+  signup:
+    image: signup-app
+    build: signup/.
+    ports:
+      - 8091:8091
+    depends_on:
+      - stock-mysql
+      - eureka-discovery-service
+    links:
+      - stock-mysql
+      - eureka-discovery-service
+      
+  zuul-gateway-service:
+    image: zuul-gateway-service-app
+    build: zuul-gateway-service/.
+    ports:
+      - 8083:8083
+    depends_on:
+      - authentication
+      - file-upload
+      - signup
+    links:
+      - authentication
+      - file-upload
+      - signup
+      
+  angular-learn:
+    image: angular-learn-app
+    build: stock/.
+    ports:
+      - 8086:80
+    links:
+      - zuul-gateway-service
